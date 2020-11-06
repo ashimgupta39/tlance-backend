@@ -80,10 +80,10 @@ const University = db.define('universities', {
         type: datatypes.STRING(64),
         is: /^[0-9a-f]{64}$/i
     },
-    courses: {
-        type: datatypes.STRING,
-        allowNull: false
-    },
+    // courses: {
+    //     type: datatypes.STRING,
+    //     allowNull: false
+    // },
     mobileNo: {
         type: datatypes.INTEGER,
         allowNull: false
@@ -97,6 +97,19 @@ const University = db.define('universities', {
         allowNull: false
     }
 })
+
+Skill.belongsTo(Teacher)
+Teacher.hasMany(Skill)
+
+Course.belongsTo(University)
+University.hasMany(Course)
+
+State.belongsTo(Country)
+Country.hasMany(State)
+
+gender.belongsTo(Teacher)
+Teacher.hasOne(gender)
+
 
 
 db.sync({ alter: true })
