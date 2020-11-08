@@ -98,6 +98,18 @@ Country.bulkCreate([
 }).then(()=> console.log("countries added successfully"))
   .catch((e)=>console.log(e))
 
+  State.bulkCreate([
+    {name: 'Engineering'},
+    {name: 'Medical'},
+    {name: 'Business & Management'},
+    {name: 'Humanities'}, 
+    {name: 'Law'}, 
+    {name: 'MBA'} 
+],{
+    ignoreDuplicates: false
+}).then(()=> console.log("Courses added successfully"))
+  .catch((e)=>console.log(e))
+
   db.sync({ alter: true })
   .then (() => console.log("database seeded"))
   .catch( (err) => console.log(err))
