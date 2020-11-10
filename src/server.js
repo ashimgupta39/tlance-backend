@@ -6,8 +6,13 @@ const app = express();
 app.set('view engine', 'hbs')
 app.set('views', path.resolve(__dirname, '../views'))
 
-app.get('/signup', (req, res)=>{
-    res.render('signup')
+app.get('/signupusers', (req, res)=>{
+    const genders = gender.findAll()
+    const skills = Skill.findAll()
+    const countries = Country.findAll()
+    res.render('signup', {
+         skills, genders, countries 
+    })
 })
 
 exports = module.exports =  {
