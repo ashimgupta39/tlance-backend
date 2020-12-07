@@ -8,11 +8,11 @@ const db = new sequelize('accounts', 'myuser','mypass',
 const datatypes = sequelize.DataTypes
 
 const Teacher = db.define('teachers', {
-    id: {
-        type: datatypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
+    // tid: {
+    //     type: datatypes.INTEGER,
+    //     // primaryKey: true,
+    //     //  autoIncrement: true
+    // },
     name: {
         type: datatypes.STRING(30),
         allowNull: false
@@ -57,11 +57,11 @@ const Teacher = db.define('teachers', {
 })
 
 const University = db.define('universities', {
-    id: {
-        type: datatypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
+    // uid: {
+    //     type: datatypes.INTEGER,
+    //     // primaryKey: true,
+    //     // autoIncrement: true
+    // },
     username:{
         type: datatypes.STRING,
         allowNull: false
@@ -90,17 +90,14 @@ const University = db.define('universities', {
     }
 })
 
-Skill.belongsTo(Teacher)
-Teacher.hasMany(Skill)
+University.belongsTo(Course)
+Course.hasMany(University)
 
-Course.belongsTo(University)
-University.hasMany(Course)
+Teacher.belongsTo(Skill)
+Skill.hasMany(Teacher)
 
-State.belongsTo(Country)
-Country.hasMany(State)
-
-gender.belongsTo(Teacher)
-Teacher.hasOne(gender)
+Teacher.belongsTo(gender)
+gender.hasMany(Teacher)
 
 
 

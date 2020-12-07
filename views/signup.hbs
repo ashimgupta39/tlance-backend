@@ -20,7 +20,8 @@
     
     <div class="card primecolor text-center card-form">
         <div class="card-body">
-            <h2 style="text-align:center;" class="text-primary">SignUp Page for Users</h2>
+            <h2 style="text-align:center;" class="text-primary">SignUp Page for Teachers</h2>
+            {{!-- <h3><a href="#">SignUp Page for Universities</a></h3> --}}
             <form action="">
                 <div style="text-align: left;">Name</div>
                 <input type="text" class="form-control form-group form-control-lg"  >  
@@ -33,7 +34,7 @@
         <select class="form-control form-group form-control-lg">
             {{!-- country option --}}
             {{#each countries as |c|}}
-                <option value="{{c.id}}">{{c.name}}</option>
+                <option value="{{c.name}}">{{c.name}}</option>
             {{/each}}
             </select>
         <div style="text-align: left;">Password</div>
@@ -41,15 +42,15 @@
          <div style="text-align: left;">Your Gender</div>
          <select class="form-control form-group form-control-lg">
              {{!-- gender option  --}}
-             {{#each genders as |g|}}
-                <option value="{{g.id}}">{{g.name}}</option>
+             {{#each genderes as |g|}}
+                <option value="{{g.name}}">{{g.name}}</option>
             {{/each}}
                </select>
          <div style="text-align: left;">Choose Your Skills</div>
          <select class="form-control form-group form-control-lg">
              {{!-- skill option --}}
              {{#each skills as |s|}}
-                <option value="{{s.id}}">{{s.name}}</option>
+                <option value="{{s.name}}">{{s.name}}</option>
             {{/each}}
                </select>
 

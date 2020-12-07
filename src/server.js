@@ -6,12 +6,20 @@ const app = express();
 app.set('view engine', 'hbs')
 app.set('views', path.resolve(__dirname, '../views'))
 
-app.get('/signupusers', (req, res)=>{
-    const genders = gender.findAll()
-    const skills = Skill.findAll()
-    const countries = Country.findAll()
+app.get('/signupteachers', async(req, res)=>{
+    const skills = await Skill.findAll()
+    const countries = await Country.findAll()
+    const genderes = await gender.findAll()
     res.render('signup', {
-         skills, genders, countries 
+         skills, genderes, countries 
+    })
+})
+app.get('/signupuniversities', async(req, res)=>{
+    const courses = await Course.findAll()
+    const countries = await Country.findAll()
+    // const genderes = await gender.findAll()
+    res.render('signupuni', {
+         courses, countries 
     })
 })
 

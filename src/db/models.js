@@ -1,27 +1,39 @@
 const {db, sequelize} = require('./connections');
 const datatypes = sequelize.DataTypes
 //country, state, skills, courses, gender
-const State = db.define('states', {
-    name: {
-        type: datatypes.STRING(20)
-    }
-})
+// const State = db.define('states', {
+//     name: {
+//         type: datatypes.STRING(20)
+//     }
+// })
 const Country = db.define('countries', {
     name: {
         type: datatypes.STRING(20),
-        primaryKey: true
+        primaryKey: true,
+        // autoIncrement: true
     }
 })
 const gender = db.define('genders',{
-    name: {
-        type: datatypes.STRING
-    }
+    name:{
+        type: datatypes.STRING,
+        primaryKey: true,
+        // autoIncrement: true
+    } 
+    
 })
 const Skill = db.define('skills',{
-    name: datatypes.STRING
+    name:{
+        type: datatypes.STRING,  
+        primaryKey: true,
+    } 
+    // autoIncrement: true
 })
 const Course = db.define('courses', {
-    name: datatypes.STRING
+    name:{
+        type: datatypes.STRING,  
+        primaryKey: true,
+    } 
+    // autoIncrement: true
 })
 
 db.sync({ alter: true })
@@ -29,5 +41,5 @@ db.sync({ alter: true })
     .catch( (err) => console.log(err))
 
 module.exports = {
-    Country, State, gender, Skill, Course 
+    Country, gender, Skill, Course 
 }
