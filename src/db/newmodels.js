@@ -14,7 +14,7 @@ const Teacher = db.define('teachers', {
     //     //  autoIncrement: true
     // },
     name: {
-        type: datatypes.STRING(30),
+        type: datatypes.STRING(300),
         allowNull: false
     },
     username: {
@@ -38,20 +38,12 @@ const Teacher = db.define('teachers', {
         }
         ),
     },
-    address: {
-        type: datatypes.STRING,
-        allowNull: false
-    },
     price: {
         type: datatypes.INTEGER({min:0}),
         allowNull: false
     },
-    age: {
-        type: datatypes.INTEGER({min: 1}),
-        allowNull: false
-    },
     mobileNo: {
-        type: datatypes.INTEGER,
+        type: datatypes.INTEGER(4294967295),
         allowNull: false
     }  
 })
@@ -77,11 +69,7 @@ const University = db.define('universities', {
         is: /^[0-9a-f]{64}$/i
     },
     mobileNo: {
-        type: datatypes.INTEGER,
-        allowNull: false
-    },
-    address: {
-        type: datatypes.STRING,
+        type: datatypes.INTEGER(4294967295),
         allowNull: false
     },
     preffered_qualities: {

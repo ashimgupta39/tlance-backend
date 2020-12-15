@@ -1,0 +1,60 @@
+.navbar{
+    border-bottom: #6C63FF 3px solid;
+    opacity: 0.8;
+}
+
+#home-section{
+    background-image: url('lp_img.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 700px;
+}
+.home-inner{
+    padding-top: 150px;
+}
+.dark-overlay{
+    background-color: rgba(0,0, 0, 0.7);
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    min-height: 700px;
+}
+.card-form{
+    opacity: 0.8;
+}
+.primecolor{
+    background-color: #6C63FF;
+}
+.primetextcolor:hover{
+    color: #6C63FF;
+}
+.fa{
+    color: #6C63FF;
+    padding:4px;
+    border-radius: 5px;
+    font-size: 30px;
+}
+
+.maincontainer{
+    position: relative;
+}
+.thecard{
+    position: absolute;
+    /* width: 100%;
+    height: 100%; */
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+.thecard:hover{
+    transform: rotateY(180deg);
+}
+.frontcard{
+    position: absolute;
+    backface-visibility: hidden;
+}
+.backcard{
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
