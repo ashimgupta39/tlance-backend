@@ -6,15 +6,22 @@ const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
+//landing page
 app.get('/',(req,res)=>{
-    // C:/Users/Ashim Gupta/Desktop/tlance/tlance backend/views/landing page/landingpg.html
     res.sendFile(__dirname+'/views/landingpg.html')
 })
-
+//setting view engine to hbs for rendering things on webpage
 app.set('view engine', 'hbs')
 app.set('views', __dirname+ '/views')
-
+//making helpers for hbs
+var Handlebars = require('hbs')
+Handlebars.registerHelper('isEqual', function (value, cname) {
+    return value == cname;
+  });
+Handlebars.registerHelper('fieldcheck', function (value, cname) {
+    return value == cname;
+  });
+//the line that solves addressing problems
 app.use(express.static(path.join(__dirname, 'views')))
 
 //signup page requests
@@ -56,13 +63,13 @@ app.post('/signteachers', async(req,res)=>{
         skillName: req.body.skills,
         price: req.body.price,
         pitch: req.body.pitch
-    }).then(()=>{res.sendFile(__dirname + 'login.html')})
+    }).then(()=>{res.sendFile(__dirname + '/views/login.html')})
       .catch((e)=>{console.log(e)})
     
 })
 app.post('/signuniversities', async(req,res)=>{
     await University.create({
-        uniname: req.body.Name,
+        name: req.body.Name,
         username: req.body.username,
         emailId: req.body.email,
         Password: req.body.passwd,
@@ -70,7 +77,7 @@ app.post('/signuniversities', async(req,res)=>{
         country: req.body.country,
         courseName: req.body.course,
         preffered_qualities: req.body.lookingfor
-    }).then(()=>{res.sendFile(__dirname + 'loginuni.html')})
+    }).then(()=>{res.sendFile(__dirname + '/views/loginuni.html')})
       .catch((e)=>{console.log(e)})
     
 })
@@ -98,7 +105,13 @@ app.post('/loginuniversities',async(req,res)=>{
         }
     }) 
     if(details){
-        res.send(`<h1>Login Successfull</h1>`)
+        // res.send(`<h1>Login Successfull</h1>`)
+        
+        const teachers= await Teacher.findAll()
+        const courses= await Course.findAll()
+        res.render('udpg',{
+            details, teachers, courses
+        })
     }
     else{
         res.send(`<h1>Login unsuccessfull</h1>`)

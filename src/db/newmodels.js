@@ -42,8 +42,12 @@ const Teacher = db.define('teachers', {
         type: datatypes.INTEGER({min:0}),
         allowNull: false
     },
-    mobileNo: {
-        type: datatypes.INTEGER(4294967295),
+    // mobileNo: {
+    //     type: datatypes.INTEGER(4294967295),
+    //     allowNull: false
+    // },
+    pitch: {
+        type: datatypes.STRING(1000),
         allowNull: false
     }  
 })
@@ -58,7 +62,10 @@ const University = db.define('universities', {
         type: datatypes.STRING,
         allowNull: false
     },
-
+    name: {
+        type: datatypes.STRING(300),
+        allowNull: false
+    },
     emailId:{
         type: datatypes.STRING,
         allowNull: false,
@@ -68,10 +75,10 @@ const University = db.define('universities', {
         type: datatypes.STRING(64),
         is: /^[0-9a-f]{64}$/i
     },
-    mobileNo: {
-        type: datatypes.INTEGER(4294967295),
-        allowNull: false
-    },
+    // mobileNo: {
+    //     type: datatypes.INTEGER(4294967295),
+    //     allowNull: false
+    // },
     preffered_qualities: {
         type: datatypes.STRING,
         allowNull: false
