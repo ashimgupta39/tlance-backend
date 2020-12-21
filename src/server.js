@@ -1,10 +1,16 @@
 const { urlencoded } = require('express');
 const express = require('express');
 const path = require('path')
-const {Teacher, University, Country, State, gender, Skill, Course, db, sequelize} = require('./db/newmodels')
+const {Job, Teacher, University, Country, State, gender, Skill, Course, db, sequelize} = require('./db/newmodels')
 const app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+//setting up websocket
+const http = require('http')
+const socketio = require('socket.io')
+const server = http.createServer(app)
+const io = socketio(server)
 
 //landing page
 app.get('/',(req,res)=>{
@@ -91,7 +97,12 @@ app.post('/loginteachers',async(req,res)=>{
         }
     })
     if(details){
-        res.send(`<h1>Login Successfull</h1>`)
+        // res.send(`<h1>Login Successfull</h1>`)
+        const courses = await Course.findAll()
+        const jobs = await Job.findAll()
+        res.render('tdpg',{
+            details, courses, jobs
+        })
     }
     else{
         res.send(`<h1>Login unsuccessfull</h1>`)
@@ -117,7 +128,27 @@ app.post('/loginuniversities',async(req,res)=>{
         res.send(`<h1>Login unsuccessfull</h1>`)
     }
 })
+//getting job details
+app.get('/postajob', async(req,res)=>{
+    const courses= await Course.findAll()
+    res.render('postjobpg',{
+        uname:req.query.uname,
+        course: req.query.course,
+        courses
+    })
+})
+//entering job details in jobs table in db
+app.post('/postjob', async(req,res)=>{
+    await Job.create({
+        UniversityName: req.body.UniversityName,
+        location: req.body.location,
+        forcourse: req.body.forcourse,
+        stipend: req.body.stipend,
+        jobdescription: req.body.jobdescription
+    }).then(()=>{res.send(`<h2>Thank you for posting job</h2>`)})
+      .catch((e)=>{console.error(e)})
+})
 
 exports = module.exports =  {
-    app
+    server
 }

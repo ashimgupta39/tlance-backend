@@ -37,7 +37,7 @@
             <a class="nav-link primetextcolor" href="#">Messages</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link primetextcolor" href="#">Post a Job</a>
+            <a class="nav-link primetextcolor" href="/postajob?uname={{details.name}}&&course={{details.courseName}}">Post a Job</a>
           </li>
           <li class="nav-item">
             <div class="nav-link primetextcolor">{{details.name}}</div>
@@ -78,6 +78,7 @@
                 <a href="#" class="btn btn-success">Chat <i class="fa fa-comment" aria-hidden="true"></i></a>
               </div>
             </div>
+            <br>
             {{/if}}
             {{/each}}
           </div>

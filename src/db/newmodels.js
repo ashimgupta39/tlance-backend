@@ -7,6 +7,30 @@ const db = new sequelize('accounts', 'myuser','mypass',
 })
 const datatypes = sequelize.DataTypes
 
+//Jobs Model
+const Job = db.define('jobs', {
+    UniversityName:{
+        type: datatypes.STRING,
+        allowNull: false
+    },
+    location:{
+        type: datatypes.STRING,
+        allowNull: false
+    },
+    forcourse:{
+        type: datatypes.STRING,
+        allowNull: false
+    },
+    stipend: {
+        type: datatypes.INTEGER({min:0}),
+        allowNull: false
+    },
+    jobdescription: {
+        type: datatypes.STRING(1000),
+        allowNull: false
+    }
+})
+
 const Teacher = db.define('teachers', {
     // tid: {
     //     type: datatypes.INTEGER,
@@ -101,5 +125,5 @@ db.sync({ alter: true })
     .catch( (err) => console.log(err))
 
 module.exports = {
-    Teacher, University, Country, State, gender, Skill, Course,db, sequelize
+    Job, Teacher, University, Country, State, gender, Skill, Course,db, sequelize
 }
