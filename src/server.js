@@ -149,6 +149,26 @@ app.post('/postjob', async(req,res)=>{
       .catch((e)=>{console.error(e)})
 })
 
+//chatting system
+app.get('/chat',(req,res)=>{
+    res.render('chatpg',{
+        from: req.query.from,
+        to: req.query.to
+    })
+})
+
+io.on('connection', (socket)=>{
+    console.log('connected with socket id= ', socket.id)
+    socket.on('logged_in',(data)=>{
+        socket.join(data.from)
+    })
+    socket.on('msg_send',(data)=>{
+        console.log("message:",data.msg,"sent from:",data.from, "to:", data.to)
+        io.to(data.to).emit('msg_rcvd',data)
+        socket.emit('msg_rcvd',data)
+    })
+})
+
 exports = module.exports =  {
     server
 }
