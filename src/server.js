@@ -35,8 +35,11 @@ app.get('/signupteachers', async(req, res)=>{
     const skills = await Skill.findAll()
     const countries = await Country.findAll()
     const genderes = await gender.findAll()
+    const username = req.query.username
+    const password = req.query.password
+    const email= req.query.email 
     res.render('signup', {
-         skills, genderes, countries 
+         skills, genderes, countries, username, password, email
     })
 })
 app.get('/signupuniversities', async(req, res)=>{

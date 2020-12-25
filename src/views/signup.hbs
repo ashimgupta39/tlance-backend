@@ -27,9 +27,9 @@
                 <div style="text-align: left;">Name</div>
                 <input name="Name" type="text" class="form-control form-group form-control-lg"  >  
                 <div style="text-align: left;">Username</div>
-                <input name="username" type="text" class="form-control form-group form-control-lg"  >  
+                <input value="{{username}}" name="username" type="text" class="form-control form-group form-control-lg"  >  
                 <div style="text-align: left;">Email</div>
-                <input name="email" type="email"   class="form-control form-group form-control-lg"   >
+                <input value="{{email}}" name="email" type="email"   class="form-control form-group form-control-lg"   >
                 <div style="text-align: left;">Your Mobile Number </div>
                 <input name="phoneno" type="number" length="10"  class="form-control form-group form-control-lg" >  
         <div style="text-align: left;">Choose Your Country</div>
@@ -41,7 +41,7 @@
             {{/each}}
             </select>
         <div style="text-align: left;">Password</div>
-         <input name="passwd" type="password"  class="form-control form-group form-control-lg" > 
+         <input value="{{password}}" name="passwd" type="password"  class="form-control form-group form-control-lg" > 
          <div style="text-align: left;">Your Gender</div>
          <select name="gender" class="form-control form-group form-control-lg">
              {{!-- gender option  --}}
