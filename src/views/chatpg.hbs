@@ -21,15 +21,37 @@
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="chatscript.js"></script>
+    <link rel="stylesheet" href="chatstyle.css">
 </head>
 
 <body>
+    {{!-- logo --}}
+    <nav>
+        <img src="chat.png" alt="Tlance Chat" class="logo">
+    </nav>
+    {{!-- messages --}}
+    <div class="container">
+        {{!-- navbar --}}
+        <nav class="navbar bg-light">
+      <a href="#" class="navbar-brand">{{to}}</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span
+          class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+    </div>
+  </nav>
+
+        <div id="ulMsgs" style="list-style-type:none"></div>
+    </div>
+    {{!-- send-bar --}}
+    <div class="send">
+        <div id="send-container">
+            <input type="text" id="inpNewMsg" placeholder="New Message">
+            <button id="btnSend"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </div>
+    </div>
 
     <input type="text" id="msgFrom" value="{{from}}">
-    Send message to: <input type="text" id="inpToUser" value="{{to}}">
-    <ul id="ulMsgs"></ul>
-    <input type="text" id="inpNewMsg" placeholder="New Message">
-    <button id="btnSend"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+    <input type="text" id="inpToUser" value="{{to}}">
 </body>
 
 </html>

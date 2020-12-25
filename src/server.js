@@ -100,6 +100,7 @@ app.post('/loginteachers',async(req,res)=>{
         // res.send(`<h1>Login Successfull</h1>`)
         const courses = await Course.findAll()
         const jobs = await Job.findAll()
+        //mark login
         res.render('tdpg',{
             details, courses, jobs
         })
@@ -150,11 +151,29 @@ app.post('/postjob', async(req,res)=>{
 })
 
 //chatting system
-app.get('/chat',(req,res)=>{
-    res.render('chatpg',{
-        from: req.query.from,
-        to: req.query.to
-    })
+app.get('/chat',async(req,res)=>{
+    let checku= await University.findOne({
+        where:{
+            name: req.query.from,
+            Password: req.query.password
+        }
+    }) 
+    let checkt= await Teacher.findOne({
+        where:{
+            name: req.query.from,
+            Password: req.query.password
+        }
+    }) 
+    if(checku || checkt){
+        res.render('chatpg',{
+            from: req.query.from,
+            to: req.query.to
+        })
+    }
+    else{
+        res.send(`<h2>Please dont be oversmart</h2>`)
+    }
+    
 })
 
 io.on('connection', (socket)=>{
@@ -165,7 +184,7 @@ io.on('connection', (socket)=>{
     socket.on('msg_send',(data)=>{
         console.log("message:",data.msg,"sent from:",data.from, "to:", data.to)
         io.to(data.to).emit('msg_rcvd',data)
-        socket.emit('msg_rcvd',data)
+        socket.emit('msg_rcvd_me',data)
     })
 })
 
